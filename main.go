@@ -1,20 +1,17 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 
-	"br.com.jeriel/convert/services"
+	"br.com.jeriel/convert/fileService"
+	"br.com.jeriel/convert/formatService"
 )
 
 func main() {
-	services.CreateFile("input.txt")
-	services.CreateFile("output.txt")
+	fileService.CreateFile("input.txt")
+	fileService.CreateFile("output.txt")
 
 	fmt.Println("Olá!")
-
-	scanner := bufio.NewScanner(os.Stdin)
 
 loop:
 	for {
@@ -24,22 +21,17 @@ loop:
 				0 - Fechar programa
 				`)
 
-		scanner.Scan()
-		var input = scanner.Text()
-
-		if scanner.Err() != nil {
-			println("Falha ao ler a entrada.")
-			continue
-		}
+		var input int
+		fmt.Scan(&input)
 
 		switch input {
-		case "1":
+		case 1:
 			fmt.Println("Você escolheu a opção 1 - Formatar para JSON")
-			services.FormatToJson()
-		case "2":
+			formatService.FormatToJson()
+		case 2:
 			fmt.Println("Você escolheu a opção 2 - Formatar para código Java")
-			services.FormatToJava()
-		case "0":
+			formatService.FormatToJava()
+		case 0:
 			fmt.Println("Você escolheu a opção 0 - Fechar programa")
 			break loop
 		default:

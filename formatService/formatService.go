@@ -1,30 +1,32 @@
-package services
+package formatService
 
 import (
 	"fmt"
 	"strings"
+
+	"br.com.jeriel/convert/fileService"
 )
 
-func formatToJava() {
+func FormatToJava() {
 	fmt.Println("Lendo arquivo e formatando para Java...")
 
 	var replacer = strings.NewReplacer("\\n", "\n", "\\t", "\t", "\\\"", "\"")
 
-	input := ReadFile("input.txt")
+	input := fileService.ReadFile("input.txt")
 
 	output := replacer.Replace(input)
 
-	WriteFile("output.txt", output)
+	fileService.WriteFile("output.txt", output)
 }
 
-func formatToJson() {
+func FormatToJson() {
 	fmt.Println("Lendo arquivo e formatando para Java...")
 
 	var replacer = strings.NewReplacer("\n", "\\n", "\t", "\\t", "\"", "\\\"")
 
-	input := ReadFile("input.txt")
+	input := fileService.ReadFile("input.txt")
 
 	output := replacer.Replace(input)
 
-	WriteFile("output.txt", output)
+	fileService.WriteFile("output.txt", output)
 }
